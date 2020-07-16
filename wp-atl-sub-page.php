@@ -1,38 +1,47 @@
 <?php
 /*
-Plugin Name: Дочерние страницы
-Description: Плагин виджета дочерних страниц
-Version: 1.0
+Plugin Name: Child page by Atlas
+Description: Creating widget for views child page
+Version: 1.0.0
 Author: Atlas-it
 Author URI: http://atlas-it.by
+Text Domain: atl-sub-page-widget
+Domain Path: /lang/
 */
+
+// строки для перевода заголовков плагина, чтобы они попали в .po файл.
+__( 'Child page by Atlas', 'atl-sub-page-widget' );
+__( 'Creating widget for views child page', 'atl-sub-page-widget' );
+/*langs file*/
+$plugin_dir = basename( dirname( __FILE__ ) );
+load_plugin_textdomain( 'atl-sub-page-widget', null, $plugin_dir.'/lang/' );
 
 /*Регистрация виджета*/
 add_action('widgets_init', 'atl_sub_page');
 function atl_sub_page () { 
-    register_widget('ATL_subpage');
+    register_widget('ATL_WP_subpage');
 }
 
-class ATL_subpage extends WP_Widget {
+class ATL_WP_subpage extends WP_Widget {
  
     public function __construct() {
     $args = array (
-        'name'=>'Дочернии страницы',
-        'description'=>'Виджет вывода дочерних страниц'
+        'name'=>__('Child pages', 'atl-sub-page-widget'),
+        'description'=>__('Widget fot view child pages','atl-sub-page-widget'),
          );
         parent::__construct ('atl_sub_page', '', $args);
     }
     
     public function form ($instance) {
         $parent_id = isset($instance['id_parent']) ? $instance['id_parent']:'';  
-        $title = isset($instance['title'])?$instance['title']:'Каталог';    
+        $title = isset($instance['title'])?$instance['title']:__('Catalog','atl-sub-page-widget');
         ?> 
             <p>
-                <label for = "<?php echo $this->get_field_id('title');?>">Заголовок</label>
+                <label for = "<?php echo $this->get_field_id('title');?>"><?php _e('Header', 'atl-sub-page-widget');?></label>
                 <input class="widefat title" id="<?php echo $this->get_field_id('title');?>" name="<?php echo $this->get_field_name('title');?>" value="<?php echo $title;?>">
             </p>
             <p>
-                <label for = "<?php echo $this->get_field_id('id_parent');?>">Выберите страницы</label>
+                <label for = "<?php echo $this->get_field_id('id_parent');?>"><?php _e('Select page', 'atl-sub-page-widget');?></label>
                     <select class = "widefat" id="<?php echo $this->get_field_id('id_parent');?>" name="<?php echo $this->get_field_name('id_parent');?>">
                             <option></option>
                     <?php 
@@ -45,8 +54,11 @@ class ATL_subpage extends WP_Widget {
                                                          )
                                                       );
                                 foreach($page_parent as $pages) {
-                                            if ($pages->ID == $parent_id ) {echo '<option value ='.  $pages->ID.' selected="selected">'. $pages->post_title.'</option>';}
-                                            else {echo '<option value ='.$pages->ID.' >'. $pages->post_title.'</option>';}
+                                            if ($pages->ID == $parent_id ) {
+                                                echo '<option value ='.  $pages->ID.' selected="selected">'. $pages->post_title.'</option>';
+                                            } else {
+                                                echo '<option value ='.$pages->ID.' >'. $pages->post_title.'</option>';
+                                            }
                                 } ?>
                     </select>       
             </p>
@@ -74,7 +86,7 @@ class ATL_subpage extends WP_Widget {
                                         <li><a href="<?php echo get_permalink($page->ID);?>" ><?php echo $page->post_title; ?></a></li>
                         <?php }}
                                 else  { ?>
-                                        <li>Нет дочерних страниц</li>
+                                        <li><?php _e('Not found child page','atl-sub-page-widget');?></li>
                                <?php }; ?>
                     </ul>
                 <?php   
@@ -82,8 +94,8 @@ class ATL_subpage extends WP_Widget {
     }  
     
     public function update ($new_instance, $old_instance) {
-        $new_instance['id_parent'] = isset($new_instance['id_parent'])&&!empty($new_instance['id_parent']) ? $new_instance['id_parent']:1;  
-        $new_instance['title']=isset($new_instance['title']) && !empty($new_instance['title'])?strip_tags($new_instance['title']):'Каталог';
+            $new_instance['id_parent'] = isset($new_instance['id_parent'])&&!empty($new_instance['id_parent']) ? $new_instance['id_parent']:1;
+            $new_instance['title']=isset($new_instance['title']) && !empty($new_instance['title'])?strip_tags($new_instance['title']):__('Catalog','atl-sub-page-widget');
         return $new_instance;
     }
 }
