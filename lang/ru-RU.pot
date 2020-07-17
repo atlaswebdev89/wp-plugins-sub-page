@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: wp-atl-sub-page.php:13
-msgid "Child page by atlas"
+msgid "Child page by Atlas"
 msgstr ""
 
 #: wp-atl-sub-page.php:14

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-16 10:18+0300\n"
-"PO-Revision-Date: 2020-07-16 10:47+0300\n"
+"PO-Revision-Date: 2020-07-17 10:00+0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: ru_RU\n"
 
 #: wp-atl-sub-page.php:13
-msgid "Child page by atlas"
+msgid "Child page by Atlas"
 msgstr "Дочерние страницы"
 
 #: wp-atl-sub-page.php:14
