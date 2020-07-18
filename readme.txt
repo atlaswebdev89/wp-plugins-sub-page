@@ -1,7 +1,7 @@
 === Child page by Atlas ===
 Contributors: atlas89
 Stable tag: 1.0.0
-Requires at least: 5.4.2
+Requires at least: 4.8
 Tested up to: 5.4.2
 Requires PHP: 5.2.4
 Tags: Child page by Atlas
@@ -24,7 +24,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Screenshots ==
 
 1. Внешний вид виджета в админ панели Wordpress
-2. Пример вывода курсов валют в сайдбаре
+2. Пример вывода дочерних страниц в сайдбаре
 
 == Upgrade Notice ==
 = 1.0.0 =
